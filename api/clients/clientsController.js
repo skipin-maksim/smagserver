@@ -86,9 +86,28 @@ const create = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   const { id } = req.params;
+  const {
+    firstName,
+    secondName,
+    thirdName,
+    tel,
+    email,
+    city,
+    post,
+    debt,
+  } = req.body;
 
   try {
-    const result = await service.updateClient(id, req.body);
+    const result = await service.updateClient(id, {
+      firstName,
+      secondName,
+      thirdName,
+      tel,
+      email,
+      city,
+      post,
+      debt,
+    });
 
     console.log(result, "result");
 
@@ -96,7 +115,7 @@ const update = async (req, res, next) => {
       res.json({
         status: "success",
         code: 200,
-        client: req.body,
+        client: result,
       });
 
       console.log(`PATCH /clients/${id} ->`, 200);
