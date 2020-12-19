@@ -112,7 +112,7 @@ const update = async (req, res, next) => {
       res.json({
         status: "success",
         code: 200,
-        client: req.body,
+        client: result,
       });
 
       console.log(`PATCH /clients/${id} ->`, 200);

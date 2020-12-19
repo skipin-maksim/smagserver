@@ -105,9 +105,8 @@ const update = async (req, res, next) => {
       res.json({
         status: "success",
         code: 200,
-        order: result,
+        order: req.body,
       });
-
       console.log(`PATCH /orders/${id} ->`, 200);
     } else {
       res.status(404).json({
