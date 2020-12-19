@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const client = new Schema(
   {
     id: Number,
-    firstName: { type: String, required: true, minlength: 2 },
+    firstName: String,
     secondName: String,
     thirdName: String,
     tel: String,

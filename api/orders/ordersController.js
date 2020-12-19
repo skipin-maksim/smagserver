@@ -1,15 +1,15 @@
-const service = require("../../service/clientsServices");
+const service = require("../../service/ordersServices");
 
 const get = async (req, res, next) => {
   try {
-    const results = await service.getAllClients();
+    const results = await service.getAllOrders();
     res.json({
       status: "success",
       code: 200,
-      clients: results,
+      orders: results,
     });
 
-    console.log(`GET /clients/ ->`, 200);
+    console.log(`GET /orders/ ->`, 200);
   } catch (e) {
     console.error(e);
     next(e);
@@ -20,21 +20,21 @@ const getById = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const result = await service.getTClientById(id);
+    const result = await service.getTOrderById(id);
     if (result) {
       res.json({
         status: "success",
         code: 200,
-        client: result,
+        order: result,
       });
 
-      console.log(`GET /clients/${id} ->`, 200);
+      console.log(`GET /orders/${id} ->`, 200);
     } else {
       res.status(404).json({
         status: "error",
         code: 404,
-        message: `Not found client id: ${id}`,
-        client: "Not Found",
+        message: `Not found order id: ${id}`,
+        order: "Not Found",
       });
     }
   } catch (e) {
@@ -45,84 +45,76 @@ const getById = async (req, res, next) => {
 
 const create = async (req, res, next) => {
   const {
-    id,
-    firstName,
-    secondName,
-    thirdName,
-    tel,
-    email,
-    city,
-    post,
-    debt,
+    items,
+    calculatedTotals,
+    clientInfo,
+    isSaved,
+    prepayment,
+    noteForOrder,
+    numOrder,
   } = req.body;
 
-  const clients = await service.getAllClients();
+  // const orders = await service.getAllOrders();
 
   try {
-    const result = await service.createClient({
-      id,
-      firstName,
-      secondName,
-      thirdName,
-      tel,
-      email,
-      city,
-      post,
-      debt,
+    const result = await service.createOrder({
+      items,
+      calculatedTotals,
+      clientInfo,
+      isSaved,
+      prepayment,
+      noteForOrder,
+      numOrder,
     });
 
     res.status(201).json({
       status: "success",
       code: 201,
-      client: result,
+      order: result,
     });
   } catch (e) {
     console.error(e);
     next(e);
   }
 
-  console.log(`POST /clients ->`, 201);
+  console.log(`POST /orders ->`, 201);
 };
 
 const update = async (req, res, next) => {
   const { id } = req.params;
   const {
-    id,
-    firstName,
-    secondName,
-    thirdName,
-    tel,
-    email,
-    city,
-    post,
-    debt,
+    items,
+    calculatedTotals,
+    clientInfo,
+    isSaved,
+    prepayment,
+    noteForOrder,
+    numOrder,
   } = req.body;
   try {
-    const result = await service.updateClient(id, {
-      id,
-      firstName,
-      secondName,
-      thirdName,
-      tel,
-      email,
-      city,
-      post,
-      debt,
+    const result = await service.updateOrder(id, {
+      items,
+      calculatedTotals,
+      clientInfo,
+      isSaved,
+      prepayment,
+      noteForOrder,
+      numOrder,
     });
     if (result) {
       res.json({
         status: "success",
         code: 200,
-        client: result,
+        order: result,
       });
 
-      console.log(`PATCH /clients/${id} ->`, 200);
+      console.log(`PATCH /orders/${id} ->`, 200);
     } else {
       res.status(404).json({
         status: "error",
         code: 404,
-        message: `Not found client id: ${id}`,
-        client: "Not Found",
+        message: `Not found order id: ${id}`,
+        order: "Not Found",
       });
     }
   } catch (e) {
@@ -135,21 +127,21 @@ const remove = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const result = await service.removeClient(id);
+    const result = await service.removeOrder(id);
     if (result) {
       res.json({
         status: "success",
         code: 200,
-        client: result,
+        order: result,
       });
 
-      console.log(`DELETE /clients/${id} ->`, 200);
+      console.log(`DELETE /orders/${id} ->`, 200);
     } else {
       res.status(404).json({
         status: "error",
         code: 404,
-        message: `Not found client id: ${id}`,
-        client: "Not Found",
+        message: `Not found order id: ${id}`,
+        order: "Not Found",
       });
     }
   } catch (e) {
