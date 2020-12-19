@@ -82,31 +82,20 @@ const create = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   const { id } = req.params;
-  const {
-    items,
-    calculatedTotals,
-    clientInfo,
-    isSaved,
-    prepayment,
-    noteForOrder,
-    numOrder,
-  } = req.body;
+  const { provider, vendorCode, prices } = req.body;
   try {
     const result = await service.updateOrder(id, {
-      items,
-      calculatedTotals,
-      clientInfo,
-      isSaved,
-      prepayment,
-      noteForOrder,
-      numOrder,
+      provider,
+      vendorCode,
+      prices,
     });
     if (result) {
       res.json({
         status: "success",
         code: 200,
-        order: req.body,
+        order: result,
       });
+
       console.log(`PATCH /orders/${id} ->`, 200);
     } else {
       res.status(404).json({
