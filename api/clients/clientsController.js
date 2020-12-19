@@ -86,28 +86,12 @@ const create = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   const { id } = req.params;
-  const {
-    firstName,
-    secondName,
-    thirdName,
-    tel,
-    email,
-    city,
-    post,
-    debt,
-  } = req.body;
 
   try {
-    const result = await service.updateClient(id, {
-      firstName,
-      secondName,
-      thirdName,
-      tel,
-      email,
-      city,
-      post,
-      debt,
-    });
+    const result = await service.updateClient(id, req.body);
+
+    console.log(result, "result");
+
     if (result) {
       res.json({
         status: "success",
