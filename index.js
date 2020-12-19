@@ -8,7 +8,7 @@ const ordersRoute = require("./api/orders/ordersRoute");
 
 require("dotenv").config();
 
-const PORT = process.env.PORT || 2000;
+const PORT = process.env.PORT || 2100;
 const uriDb = process.env.URI_DB;
 
 const app = express();

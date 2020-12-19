@@ -19,8 +19,10 @@ const get = async (req, res, next) => {
 const getById = async (req, res, next) => {
   const { id } = req.params;
 
+  console.log(id);
+
   try {
-    const result = await service.getTOrderById(id);
+    const result = await service.getOrderById(id);
     if (result) {
       res.json({
         status: "success",
