@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const clientsRoute = require("./api/clients/clientsRoute");
 const productsRoute = require("./api/products/productsRoute");
 const ordersRoute = require("./api/orders/ordersRoute");
+const numOrderRoute = require("./api/numOrder/numOrderRoute");
 
 require("dotenv").config();
 
@@ -19,6 +20,7 @@ app.use(cors());
 app.use("/", clientsRoute);
 app.use("/", productsRoute);
 app.use("/", ordersRoute);
+app.use("/", numOrderRoute);
 
 app.use((req, res, next) => {
   res.status(404).json({
