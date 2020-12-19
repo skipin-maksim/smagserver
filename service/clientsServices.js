@@ -8,8 +8,28 @@ const getTClientById = (id) => {
   return Client.findOne({ _id: id });
 };
 
-const createClient = ({ name, email, phone }) => {
-  return Client.create({ name, email, phone });
+const createClient = ({
+  id,
+  firstName,
+  secondName,
+  thirdName,
+  tel,
+  email,
+  city,
+  post,
+  debt,
+}) => {
+  return Client.create({
+    id,
+    firstName,
+    secondName,
+    thirdName,
+    tel,
+    email,
+    city,
+    post,
+    debt,
+  });
 };
 
 const updateClient = (id, fields) => {
