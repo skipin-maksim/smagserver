@@ -33,7 +33,7 @@ const createClient = ({
 };
 
 const updateClient = (id, fields) => {
-  return Client.findByIdAndUpdate({ _id: id }, fields, { new: true });
+  return Client.findByIdAndUpdate({ _id: id }, fields);
 };
 
 const removeClient = (id) => {
