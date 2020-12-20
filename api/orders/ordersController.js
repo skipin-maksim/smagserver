@@ -51,6 +51,7 @@ const create = async (req, res, next) => {
     calculatedTotals,
     clientInfo,
     isSaved,
+    isEdit,
     prepayment,
     noteForOrder,
     numOrder,
@@ -64,6 +65,7 @@ const create = async (req, res, next) => {
       calculatedTotals,
       clientInfo,
       isSaved,
+      isEdit,
       prepayment,
       noteForOrder,
       numOrder,
@@ -84,12 +86,26 @@ const create = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   const { id } = req.params;
-  const { provider, vendorCode, prices } = req.body;
+  const {
+    items,
+    calculatedTotals,
+    clientInfo,
+    isSaved,
+    isEdit,
+    prepayment,
+    noteForOrder,
+    numOrder,
+  } = req.body;
   try {
     const result = await service.updateOrder(id, {
-      provider,
-      vendorCode,
-      prices,
+      items,
+      calculatedTotals,
+      clientInfo,
+      isSaved,
+      isEdit,
+      prepayment,
+      noteForOrder,
+      numOrder,
     });
     if (result) {
       res.json({

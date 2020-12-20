@@ -7,6 +7,7 @@ const order = new Schema(
     calculatedTotals: Object,
     clientInfo: Object,
     isSaved: Boolean,
+    isEdit: Boolean,
     prepayment: Number,
     noteForOrder: String,
     numOrder: String,
