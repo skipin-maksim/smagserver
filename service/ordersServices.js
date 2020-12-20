@@ -30,8 +30,8 @@ const createOrder = ({
   });
 };
 
-const updateOrder = (numOrder, fields) => {
-  return Order.findByIdAndUpdate({ numOrder: numOrder }, fields, { new: true });
+const updateOrder = (id, fields) => {
+  return Order.findByIdAndUpdate({ _id: id }, fields, { new: true });
 };
 
 const removeOrder = (numOrder) => {
