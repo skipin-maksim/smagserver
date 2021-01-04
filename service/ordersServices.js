@@ -34,8 +34,8 @@ const updateOrder = (id, fields) => {
   return Order.findByIdAndUpdate({ _id: id }, fields, { new: true });
 };
 
-const removeOrder = (numOrder) => {
-  return Order.findByIdAndRemove({ numOrder: numOrder });
+const removeOrder = (id) => {
+  return Order.findByIdAndRemove({ _id: id });
 };
 
 module.exports = {
