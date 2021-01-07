@@ -46,30 +46,8 @@ const getById = async (req, res, next) => {
 };
 
 const create = async (req, res, next) => {
-  const {
-    items,
-    calculatedTotals,
-    clientInfo,
-    isSaved,
-    isEdit,
-    prepayment,
-    noteForOrder,
-    numOrder,
-  } = req.body;
-
-  // const orders = await service.getAllOrders();
-
   try {
-    const result = await service.createOrder({
-      items,
-      calculatedTotals,
-      clientInfo,
-      isSaved,
-      isEdit,
-      prepayment,
-      noteForOrder,
-      numOrder,
-    });
+    const result = await service.createOrder(req.body);
 
     res.status(201).json({
       status: "success",
@@ -86,27 +64,9 @@ const create = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   const { id } = req.params;
-  const {
-    items,
-    calculatedTotals,
-    clientInfo,
-    isSaved,
-    isEdit,
-    prepayment,
-    noteForOrder,
-    numOrder,
-  } = req.body;
+
   try {
-    const result = await service.updateOrder(id, {
-      items,
-      calculatedTotals,
-      clientInfo,
-      isSaved,
-      isEdit,
-      prepayment,
-      noteForOrder,
-      numOrder,
-    });
+    const result = await service.updateOrder(id, req.body);
     if (result) {
       res.json({
         status: "success",

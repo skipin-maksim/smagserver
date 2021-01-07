@@ -12,8 +12,7 @@ const order = new Schema(
     noteForOrder: String,
     numOrder: String,
     status: String,
-    // "id": "00022",
-    // "date": "19-12-2020 01:16"
+    date: String,
   },
   { versionKey: false, timestamps: true }
 );

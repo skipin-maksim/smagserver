@@ -1,3 +1,6 @@
+const moment = require("moment");
+const dateNow = moment().format("DD-MM-YYYY HH:mm");
+
 const Order = require("./model/orderModel");
 
 const getAllOrders = async () => {
@@ -8,27 +11,9 @@ const getOrderById = (numOrder) => {
   return Order.findOne({ numOrder: numOrder });
 };
 
-const createOrder = ({
-  items,
-  calculatedTotals,
-  clientInfo,
-  isSaved,
-  isEdit,
-  prepayment,
-  noteForOrder,
-  numOrder,
-  status,
-}) => {
-  return Order.create({
-    items,
-    calculatedTotals,
-    clientInfo,
-    isSaved,
-    isEdit,
-    prepayment,
-    noteForOrder,
-    numOrder,
-  });
+const createOrder = (fields) => {
+  console.log("---------------dateNow", dateNow);
+  return Order.create({ ...fields, date: dateNow });
 };
 
 const updateOrder = (id, fields) => {
