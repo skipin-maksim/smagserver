@@ -1,6 +1,7 @@
 const moment = require("moment");
-const date = moment("2021-01-07 18:58:00").zone(-240);
-const dateNow = date.format("DD-MM-YYYY HH:mm");
+const momentTimezone = require("moment-timezone");
+
+const dateNow = momentTimezone().tz("Europe/Kiev").format("DD-MM-YYYY HH:mm");
 
 const Order = require("./model/orderModel");
 
@@ -13,7 +14,6 @@ const getOrderById = (numOrder) => {
 };
 
 const createOrder = (fields) => {
-  console.log("---------------dateNow", dateNow);
   return Order.create({ ...fields, date: dateNow });
 };
 
