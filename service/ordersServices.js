@@ -1,5 +1,6 @@
 const moment = require("moment");
-const dateNow = moment().format("DD-MM-YYYY HH:mm");
+const date = moment("2021-01-07 18:58:00").zone(-240);
+const dateNow = date.format("DD-MM-YYYY HH:mm");
 
 const Order = require("./model/orderModel");
 
