@@ -17,6 +17,7 @@ const createOrder = ({
   prepayment,
   noteForOrder,
   numOrder,
+  status,
 }) => {
   return Order.create({
     items,

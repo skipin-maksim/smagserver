@@ -11,6 +11,7 @@ const order = new Schema(
     prepayment: Number,
     noteForOrder: String,
     numOrder: String,
+    status: String,
     // "id": "00022",
     // "date": "19-12-2020 01:16"
   },
