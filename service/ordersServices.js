@@ -22,8 +22,8 @@ const getAllOrders = async () => {
   return Order.find();
 };
 
-const getOrderById = (numOrder) => {
-  return Order.findOne({ numOrder: numOrder });
+const getOrderById = (numOrderServer) => {
+  return Order.findOne({ numOrderServer: numOrderServer });
 };
 
 const createOrder = (fields) => {
