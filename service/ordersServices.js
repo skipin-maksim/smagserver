@@ -1,7 +1,14 @@
-// const moment = require("moment");
-// const momentTimezone = require("moment-timezone");
+let numOrder = 0;
+let numOrderString = "";
 
-// const dateNow = momentTimezone().tz("Europe/Kiev").format("DD-MM-YYYY HH:mm");
+const editCustomNumber = (value) => ("000000" + (value + 1)).substr(-6);
+
+const changeNumOrder = (value) => {
+  numOrderString = editCustomNumber(value);
+  numOrder += 1;
+
+  return numOrderString;
+};
 
 const Order = require("./model/orderModel");
 
@@ -14,7 +21,7 @@ const getOrderById = (numOrder) => {
 };
 
 const createOrder = (fields) => {
-  return Order.create({ ...fields });
+  return Order.create({ ...fields, numOrderServer: changeNumOrder(numOrder) });
 };
 
 const updateOrder = (id, fields) => {
