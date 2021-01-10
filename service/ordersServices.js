@@ -1,4 +1,5 @@
 const momentTimezone = require("moment-timezone");
+const { v4: uuidv4 } = require("uuid");
 
 const dateNow = () =>
   momentTimezone().tz("Europe/Kiev").format("DD-MM-YYYY HH:mm");
@@ -28,8 +29,10 @@ const getOrderById = (numOrder) => {
 const createOrder = (fields) => {
   return Order.create({
     ...fields,
+    id: uuidv4(),
     date: dateNow(),
     updatedDate: "",
+    status: "Не обработан",
     numOrderServer: changeNumOrder(numOrder),
   });
 };

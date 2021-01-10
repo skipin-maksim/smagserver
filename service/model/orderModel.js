@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const order = new Schema(
   {
+    id: String,
     items: Array,
     calculatedTotals: Object,
     clientInfo: Object,
@@ -15,6 +16,7 @@ const order = new Schema(
     status: String,
     date: String,
     updatedDate: String,
+    status: String,
   },
   { versionKey: false, timestamps: true }
 );
