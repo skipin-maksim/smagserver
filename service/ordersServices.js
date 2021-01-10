@@ -4,16 +4,16 @@ const { v4: uuidv4 } = require("uuid");
 const dateNow = () =>
   momentTimezone().tz("Europe/Kiev").format("DD-MM-YYYY HH:mm");
 
-let numOrder = 0;
-let numOrderString = "";
+let orderNum = 0;
+let orderNumString = "";
 
 const editCustomNumber = (value) => ("000000" + (value + 1)).substr(-6);
 
 const changeNumOrder = (value) => {
-  numOrderString = editCustomNumber(value);
-  numOrder += 1;
+  orderNumString = editCustomNumber(value);
+  orderNum += 1;
 
-  return numOrderString;
+  return orderNumString;
 };
 
 const Order = require("./model/orderModel");
@@ -23,19 +23,19 @@ const getAllOrders = async () => {
 };
 
 const getOrderById = (numOrderServer) => {
-  return Order.findOne({ numOrderServer: numOrderServer });
+  return Order.findOne({ orderNum: numOrderServer });
 };
 
 const createOrder = (fields) => {
-  const newNumOrder = changeNumOrder(numOrder);
+  const newOrderNum = changeNumOrder(orderNum);
 
   return Order.create({
     ...fields,
-    id: newNumOrder,
+    id: newOrderNum,
     date: dateNow(),
     updatedDate: "",
     status: "Не обработан",
-    numOrderServer: newNumOrder,
+    orderNum: newOrderNum,
   });
 };
 
