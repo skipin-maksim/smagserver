@@ -18,7 +18,11 @@ const createOrder = (fields) => {
 };
 
 const updateOrder = (id, fields) => {
-  return Order.findByIdAndUpdate({ _id: id }, fields, { new: true });
+  return Order.findByIdAndUpdate(
+    { _id: id },
+    { ...fields, dateUpdate: dateNow },
+    { new: true }
+  );
 };
 
 const removeOrder = (id) => {

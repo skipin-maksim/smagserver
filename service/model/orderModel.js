@@ -13,6 +13,7 @@ const order = new Schema(
     numOrder: String,
     status: String,
     date: String,
+    dateUpdate: String,
   },
   { versionKey: false, timestamps: true }
 );
