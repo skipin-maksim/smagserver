@@ -29,6 +29,7 @@ const createOrder = (fields) => {
   return Order.create({
     ...fields,
     date: dateNow(),
+    updatedDate: "",
     numOrderServer: changeNumOrder(numOrder),
   });
 };
