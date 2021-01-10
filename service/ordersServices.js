@@ -1,3 +1,8 @@
+const momentTimezone = require("moment-timezone");
+
+const dateNow = () =>
+  momentTimezone().tz("Europe/Kiev").format("DD-MM-YYYY HH:mm");
+
 let numOrder = 0;
 let numOrderString = "";
 
@@ -21,11 +26,19 @@ const getOrderById = (numOrder) => {
 };
 
 const createOrder = (fields) => {
-  return Order.create({ ...fields, numOrderServer: changeNumOrder(numOrder) });
+  return Order.create({
+    ...fields,
+    date: dateNow(),
+    numOrderServer: changeNumOrder(numOrder),
+  });
 };
 
 const updateOrder = (id, fields) => {
-  return Order.findByIdAndUpdate({ _id: id }, fields, { new: true });
+  return Order.findByIdAndUpdate(
+    { _id: id },
+    { ...fields, updatedDate: dateNow() },
+    { new: true }
+  );
 };
 
 const removeOrder = (id) => {
