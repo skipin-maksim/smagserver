@@ -27,13 +27,15 @@ const getOrderById = (numOrder) => {
 };
 
 const createOrder = (fields) => {
+  const numOrder = changeNumOrder(numOrder);
+
   return Order.create({
     ...fields,
-    id: uuidv4(),
+    id: numOrder,
     date: dateNow(),
     updatedDate: "",
     status: "Не обработан",
-    numOrderServer: changeNumOrder(numOrder),
+    numOrderServer: numOrder,
   });
 };
 
