@@ -14,7 +14,7 @@ const order = new Schema(
     numOrderServer: String,
     status: String,
     date: String,
-    dateUpdate: String,
+    updatedDate: String,
   },
   { versionKey: false, timestamps: true }
 );
