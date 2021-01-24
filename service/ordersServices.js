@@ -30,10 +30,6 @@ const getOrderById = (numOrderServer) => {
 
 const createOrder = async (fields) => {
   const newOrderNum = await changeNumOrder();
-  console.log(
-    "--------------------******************--------------------",
-    newOrderNum
-  );
 
   return Order.create({
     ...fields,
