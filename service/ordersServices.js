@@ -15,8 +15,6 @@ const changeNumOrder = async () => {
     numOrder: numOrderObj.numOrder + 1,
   });
 
-  console.log(updateNumOrderInDb);
-
   return orderNumString;
 };
 
@@ -30,8 +28,12 @@ const getOrderById = (numOrderServer) => {
   return Order.findOne({ orderNum: numOrderServer });
 };
 
-const createOrder = (fields) => {
-  const newOrderNum = changeNumOrder();
+const createOrder = async (fields) => {
+  const newOrderNum = await changeNumOrder();
+  console.log(
+    "--------------------******************--------------------",
+    newOrderNum
+  );
 
   return Order.create({
     ...fields,
