@@ -11,9 +11,9 @@ const changeNumOrder = async () => {
 
   const orderNumString = editCustomNumber(numOrderObj.numOrder);
 
-  await service.updateNumOrder("600d5c539d5d2f0de8a96286", {
-    numOrder: numOrderObj.numOrder + 1,
-  });
+  // await service.updateNumOrder("600d5c539d5d2f0de8a96286", {
+  //   numOrder: numOrderObj.numOrder + 1,
+  // });
 
   return orderNumString;
 };
