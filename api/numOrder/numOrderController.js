@@ -4,6 +4,8 @@ const get = async (req, res, next) => {
   try {
     const results = await service.getNumOrder();
 
+    console.log(results);
+
     res.json({
       status: "success",
       code: 200,
@@ -19,11 +21,11 @@ const get = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   const { id } = req.params;
-  const { valueNum, valueStr } = req.body;
+  const { numOrder } = req.body;
+
   try {
     const result = await service.updateNumOrder(id, {
-      valueNum,
-      valueStr,
+      numOrder,
     });
     if (result) {
       res.json({

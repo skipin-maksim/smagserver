@@ -1,17 +1,21 @@
 const momentTimezone = require("moment-timezone");
-const { v4: uuidv4 } = require("uuid");
+const service = require("../service/numOrderServices");
 
 const dateNow = () =>
   momentTimezone().tz("Europe/Kiev").format("DD-MM-YYYY HH:mm");
 
-let orderNum = 0;
-let orderNumString = "";
-
 const editCustomNumber = (value) => ("000000" + (value + 1)).substr(-6);
 
-const changeNumOrder = (value) => {
-  orderNumString = editCustomNumber(value);
-  orderNum += 1;
+const changeNumOrder = async () => {
+  const [numOrderObj] = await service.getNumOrder();
+
+  const orderNumString = editCustomNumber(numOrderObj.numOrder);
+
+  await service.updateNumOrder("600d5c539d5d2f0de8a96286", {
+    numOrder: numOrderObj.numOrder + 1,
+  });
+
+  console.log(updateNumOrderInDb);
 
   return orderNumString;
 };
@@ -27,7 +31,7 @@ const getOrderById = (numOrderServer) => {
 };
 
 const createOrder = (fields) => {
-  const newOrderNum = changeNumOrder(orderNum);
+  const newOrderNum = changeNumOrder();
 
   return Order.create({
     ...fields,
