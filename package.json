@@ -4,13 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=prodaction node index.js",
+    "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "npm run start --prefix smag",
-    "client:install": "npm install --prefix smag",
-    "client:build": "npm run build --prefix smag",
-    "d-start": "cross-env NODE_ENV=development concurrently \"npm run dev\" \"npm run client\""
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
