@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "cross-env NODE_ENV=prodaction node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "npm run start --prefix smag",
+    "client:install": "npm install --prefix smag",
+    "client:build": "npm run build --prefix smag",
+    "d-start": "cross-env NODE_ENV=development concurrently \"npm run dev\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
@@ -14,6 +18,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
+    "concurrently": "^5.3.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -30,5 +35,8 @@
     "passport-jwt": "^4.0.0",
     "uuid": "^8.3.2",
     "yargs": "^16.0.3"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }

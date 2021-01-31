@@ -1,43 +1,45 @@
-const momentTimezone = require("moment-timezone");
-const service = require("../service/numOrderServices");
+const momentTimezone = require('moment-timezone');
+const { v4: uuidv4 } = require('uuid');
 
 const dateNow = () =>
-  momentTimezone().tz("Europe/Kiev").format("DD-MM-YYYY HH:mm");
+  momentTimezone().tz('Europe/Kiev').format('DD-MM-YYYY HH:mm');
 
-const editCustomNumber = (value) => ("000000" + (value + 1)).substr(-6);
+let orderNum = 0;
+let orderNumString = '';
 
-const changeNumOrder = async () => {
-  const [numOrderObj] = await service.getNumOrder();
+const editCustomNumber = value => ('000000' + (value + 1)).substr(-6);
 
-  const orderNumString = editCustomNumber(numOrderObj.numOrder);
-
-  // await service.updateNumOrder("600d5c539d5d2f0de8a96286", {
-  //   numOrder: numOrderObj.numOrder + 1,
-  // });
+const changeNumOrder = value => {
+  orderNumString = editCustomNumber(value);
+  orderNum += 1;
 
   return orderNumString;
 };
 
-const Order = require("./model/orderModel");
+const Order = require('./model/orderModel');
 
+//////
 const getAllOrders = async () => {
   return Order.find();
 };
 
-const getOrderById = (numOrderServer) => {
+///
+
+const getOrderById = numOrderServer => {
   return Order.findOne({ orderNum: numOrderServer });
 };
 
-const createOrder = async (fields) => {
-  const newOrderNum = await changeNumOrder();
+const createOrder = (fields, userId) => {
+  const newOrderNum = changeNumOrder(orderNum);
 
   return Order.create({
     ...fields,
     id: newOrderNum,
     date: dateNow(),
-    updatedDate: "",
-    status: "Не обработан",
+    updatedDate: '',
+    status: 'Не обработан',
     orderNum: newOrderNum,
+    owner: userId,
   });
 };
 
@@ -49,7 +51,7 @@ const updateOrder = (id, fields) => {
   );
 };
 
-const removeOrder = (id) => {
+const removeOrder = id => {
   return Order.findByIdAndRemove({ _id: id });
 };
 

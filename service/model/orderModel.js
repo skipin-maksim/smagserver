@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const order = new Schema(
@@ -16,10 +16,11 @@ const order = new Schema(
     date: String,
     updatedDate: String,
     status: String,
+    owner: { type: mongoose.SchemaTypes.ObjectId, ref: 'user' },
   },
   { versionKey: false, timestamps: true }
 );
 
-const Order = mongoose.model("order", order);
+const Order = mongoose.model('order', order);
 
 module.exports = Order;

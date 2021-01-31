@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const numorder = new Schema(
   {
-    numOrder: Number,
+    valueNum: Number,
+    valueStr: String,
   },
   { versionKey: false, timestamps: true }
 );

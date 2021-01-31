@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const clientsRoute = require('./api/clients/clientsRoute');
 const productsRoute = require('./api/products/productsRoute');
@@ -25,6 +26,13 @@ app.use('/', ordersRoute);
 app.use('/', numOrderRoute);
 app.use('/', authRoute);
 app.use('/', userRoute);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use('/', express.static(path.join(__dirname, 'smag', 'build')));
+  app.get('*', (req, res) => {
+    res.sendFile(patch.resolve(__dirname, 'smag', 'build', 'index.html'));
+  });
+}
 
 app.use((req, res, next) => {
   res.status(404).json({

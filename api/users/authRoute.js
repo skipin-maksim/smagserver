@@ -21,4 +21,6 @@ router.post(
   authController.logoutController
 );
 
+router.post('/refresh', authController.refreshToken);
+
 module.exports = router;

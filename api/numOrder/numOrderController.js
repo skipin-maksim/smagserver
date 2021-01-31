@@ -1,13 +1,11 @@
-const service = require("../../service/numOrderServices");
+const service = require('../../service/numOrderServices');
 
 const get = async (req, res, next) => {
   try {
     const results = await service.getNumOrder();
 
-    console.log(results);
-
     res.json({
-      status: "success",
+      status: 'success',
       code: 200,
       numOrder: results,
     });
@@ -21,15 +19,15 @@ const get = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   const { id } = req.params;
-  const { numOrder } = req.body;
-
+  const { valueNum, valueStr } = req.body;
   try {
     const result = await service.updateNumOrder(id, {
-      numOrder,
+      valueNum,
+      valueStr,
     });
     if (result) {
       res.json({
-        status: "success",
+        status: 'success',
         code: 200,
         numOrder: result,
       });
@@ -37,10 +35,10 @@ const update = async (req, res, next) => {
       console.log(`PATCH /numOrder/${id} ->`, 200);
     } else {
       res.status(404).json({
-        status: "error",
+        status: 'error',
         code: 404,
         message: `Not found numOrder: ${id}`,
-        product: "Not Found",
+        product: 'Not Found',
       });
     }
   } catch (e) {

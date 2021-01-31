@@ -1,10 +1,10 @@
-const service = require("../../service/ordersServices");
+const service = require('../../service/ordersServices');
 
 const get = async (req, res, next) => {
   try {
     const results = await service.getAllOrders();
     res.json({
-      status: "success",
+      status: 'success',
       code: 200,
       orders: results,
     });
@@ -25,7 +25,7 @@ const getById = async (req, res, next) => {
     const result = await service.getOrderById(id);
     if (result) {
       res.json({
-        status: "success",
+        status: 'success',
         code: 200,
         order: result,
       });
@@ -33,10 +33,10 @@ const getById = async (req, res, next) => {
       console.log(`GET /orders/${id} ->`, 200);
     } else {
       res.status(404).json({
-        status: "error",
+        status: 'error',
         code: 404,
         message: `Not found order id: ${id}`,
-        order: "Not Found",
+        order: 'Not Found',
       });
     }
   } catch (e) {
@@ -47,10 +47,11 @@ const getById = async (req, res, next) => {
 
 const create = async (req, res, next) => {
   try {
-    const result = await service.createOrder(req.body);
+    const { userId } = req.body;
+    const result = await service.createOrder(req.body, userId);
 
     res.status(201).json({
-      status: "success",
+      status: 'success',
       code: 201,
       order: result,
     });
@@ -69,7 +70,7 @@ const update = async (req, res, next) => {
     const result = await service.updateOrder(id, req.body);
     if (result) {
       res.json({
-        status: "success",
+        status: 'success',
         code: 200,
         order: result,
       });
@@ -77,10 +78,10 @@ const update = async (req, res, next) => {
       console.log(`PATCH /orders/${id} ->`, 200);
     } else {
       res.status(404).json({
-        status: "error",
+        status: 'error',
         code: 404,
         message: `Not found order id: ${id}`,
-        order: "Not Found",
+        order: 'Not Found',
       });
     }
   } catch (e) {
@@ -96,7 +97,7 @@ const remove = async (req, res, next) => {
     const result = await service.removeOrder(id);
     if (result) {
       res.json({
-        status: "success",
+        status: 'success',
         code: 200,
         order: result,
       });
@@ -104,10 +105,10 @@ const remove = async (req, res, next) => {
       console.log(`DELETE /orders/${id} ->`, 200);
     } else {
       res.status(404).json({
-        status: "error",
+        status: 'error',
         code: 404,
         message: `Not found order id: ${id}`,
-        order: "Not Found",
+        order: 'Not Found',
       });
     }
   } catch (e) {

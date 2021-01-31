@@ -1,11 +1,11 @@
-const { Router } = require("express");
+const { Router } = require('express');
 
-const authController = require("./authController");
+const authController = require('./authController');
 
 const UserRouter = Router();
 
-UserRouter.get("/users", authController.getUsersController);
+UserRouter.get('/users', authController.getUsersController);
 
-UserRouter.get("/current-user", authController.getUserByIdController);
+UserRouter.get('/current', authController.authorize, authController.current);
 
 module.exports = UserRouter;
