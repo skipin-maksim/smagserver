@@ -51,6 +51,7 @@ class AuthController {
     try {
       const { email, password, name } = req.body;
       const user = await UsersServ.findByEmail({ email });
+
       const isPasswordValid = await bcrypt.compare(password, user.password);
 
       if (!user || !isPasswordValid) {
@@ -64,7 +65,10 @@ class AuthController {
       }); //add refreshToken
 
       res.status(200).json({
-        data: { token, refreshToken, email, name },
+        data: {
+          tokens: { refreshToken, token },
+          user: { email, name: user.name },
+        },
       });
     } catch (e) {
       next(e);
